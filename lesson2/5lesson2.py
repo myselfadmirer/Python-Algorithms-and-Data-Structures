@@ -5,6 +5,6 @@
 count = 0
 for i in range(32, 128):
     count += 1
-    print(f'{i} -> "{chr(i)}"', end=', ')
+    print(f'{i} -> {chr(i):4}', end='')
     if not count % 10:
         print('\n')
