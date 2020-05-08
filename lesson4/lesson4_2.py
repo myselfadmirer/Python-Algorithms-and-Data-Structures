@@ -31,39 +31,39 @@ def sieve_f(n):
 
 
 # sieve_f(1)"
-# 1000 loops, best of 5: 22.2 usec per loop
+# 1000 loops, best of 5: 8.1 usec per loop
 
 # sieve_f(5)"
-# 1000 loops, best of 5: 58.6 usec per loop
+# 1000 loops, best of 5: 33.3 usec per loop
 
 # sieve_f(50)"
-# 1000 loops, best of 5: 1.18 msec per loop
+# 1000 loops, best of 5: 567 usec per loop
 
 # sieve_f(150)"
-# 1000 loops, best of 5: 4.01 msec per loop
+# 1000 loops, best of 5: 1.75 msec per loop
 
 # sieve_f(500)"
-# 1000 loops, best of 5: 14.2 msec per loop
+# 1000 loops, best of 5: 6.25 msec per loop
 
 # cProfile.run('sieve_f(1)')
-# 13 function calls in 0.001 seconds
+# 13 function calls in 0.000 seconds
 # 1    0.000    0.000    0.000    0.000 lesson4_2.py:14(sieve_f)
 
 # cProfile.run('sieve_f(5)')
-# 13 function calls in 0.001 seconds
+# 13 function calls in 0.000 seconds
 # 1    0.000    0.000    0.000    0.000 lesson4_2.py:14(sieve_f)
 
 # cProfile.run('sieve_f(50)')
-# 16 function calls in 0.002 seconds
-# 1    0.001    0.001    0.001    0.001 lesson4_2.py:14(sieve_f)
+# 16 function calls in 0.001 seconds
+# 1    0.000    0.000    0.001    0.001 lesson4_2.py:14(sieve_f)
 
 # cProfile.run('sieve_f(150)')
-# 16 function calls in 0.043 seconds
-# 1    0.042    0.042    0.043    0.043 lesson4_2.py:14(sieve_f)
+# 16 function calls in 0.002 seconds
+# 1    0.001    0.001    0.002    0.002 lesson4_2.py:14(sieve_f)
 
 # cProfile.run('sieve_f(500)')
-# 16 function calls in 0.014 seconds
-# 1    0.011    0.011    0.013    0.013 lesson4_2.py:14(sieve_f)
+# 16 function calls in 0.007 seconds
+# 1    0.005    0.005    0.007    0.007 lesson4_2.py:14(sieve_f)
 
 # Поиск наименьшего делителя с помощью квадратного корня числа
 
@@ -81,44 +81,44 @@ def prime_f(n):
                     i -= 1
             else:
                 result.append(a)
-        if len(result) >= n:
-            return result[n - 1]
+                if len(result) >= n:
+                    return result[n - 1]
         end *= 2
 
 # prime_f(1)"
-# 1000 loops, best of 5: 2.42 usec per loop
+# 1000 loops, best of 5: 2.9 usec per loop
 
 # prime_f(5)"
-# 1000 loops, best of 5: 57.5 usec per loop
+# 1000 loops, best of 5: 16.5 usec per loop
 
 # prime_f(50)"
-# 1000 loops, best of 5: 4.2 msec per loop
+# 1000 loops, best of 5: 1.29 msec per loop
 
 # prime_f(150)"
-# 1000 loops, best of 5: 21.2 msec per loop
+# 1000 loops, best of 5: 7.78 msec per loop
 
 # prime_f(500)"
-# 1000 loops, best of 5: 134 msec per loop
+# 1000 loops, best of 5: 56.8 msec per loop
 
 # cProfile.run('prime_f(1)')
-# 5 function calls in 0.000 seconds
+# 6 function calls in 0.000 seconds
 # 1    0.000    0.000    0.000    0.000 lesson4_2.py:69(prime_f)
 
 # cProfile.run('prime_f(5)')
-# 18 function calls in 0.000 seconds
+# 20 function calls in 0.000 seconds
 # 1    0.000    0.000    0.000    0.000 lesson4_2.py:69(prime_f)
 
 # cProfile.run('prime_f(50)')
-# 168 function calls in 0.005 seconds
-# 1    0.005    0.005    0.005    0.005 lesson4_2.py:69(prime_f)
+# 268 function calls in 0.001 seconds
+# 1    0.001    0.001    0.001    0.001 lesson4_2.py:69(prime_f)
 
 # cProfile.run('prime_f(150)')
-# 406 function calls in 0.032 seconds
-# 1    0.031    0.031    0.032    0.032 lesson4_2.py:69(prime_f)
+# 708 function calls in 0.008 seconds
+# 1    0.007    0.007    0.008    0.008 lesson4_2.py:69(prime_f)
 
 # cProfile.run('prime_f(500)')
-# 1120 function calls in 0.180 seconds
-# 1    0.177    0.177    0.180    0.180 lesson4_2.py:69(prime_f)
+# 2128 function calls in 0.070 seconds
+# 1    0.069    0.069    0.070    0.070 lesson4_2.py:69(prime_f)
 
 # while True:
 #     x = int(input('x = '))
