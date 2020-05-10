@@ -41,14 +41,14 @@ while True:
         break
     a = input('Введите первое число в 16-ричной системе счисления:\n')
     b = input('Введите второе число в 16-ричной системе счисления:\n')
-    a = a.upper()
-    b = b.upper()
+    a = deque(a.upper())
+    b = deque(b.upper())
     if len(a) < len(b):
         a, b = b, a
     result = deque()
     if operation == '+':
         result = adding_func(a, b)
-        print(f"{a} + {b} = {''.join(result)}")
+        print(f"{''.join(a)} + {''.join(b)} = {''.join(result)}")
     else:
         spam_sum_2 = deque()
         spam_sum = deque()
@@ -71,6 +71,6 @@ while True:
                 spam_sum_2 = spam_sum.copy()
                 spam_sum.clear()
         # assert result == deque(['7', '1', 'B', '8', 'E', '4'])
-        print(f"{a} * {b} = {''.join(result)}")
+        print(f"{''.join(a)} * {''.join(b)} = {''.join(result)}")
 
 # assert adding_func('C4F', 'A2') == deque(['C', 'F', '1'])
