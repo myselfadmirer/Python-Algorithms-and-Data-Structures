@@ -85,6 +85,7 @@ def prime_f(n):
                     return result[n - 1]
         end *= 2
 
+
 # prime_f(1)"
 # 1000 loops, best of 5: 2.9 usec per loop
 
@@ -129,3 +130,32 @@ def prime_f(n):
 
 # assert sieve_f(4) == 7
 # assert prime_f(80) == 409
+
+
+# Var2 prime_f2 медленнее варианта 1:
+
+def prime_f2(n):
+    end = n
+    result = []
+    while len(result) < n:
+        result = [2]
+        for a in range(3, end, 2):
+            i = int(a ** 0.5)
+            while 1 < i <= a ** 0.5:
+                if a % i == 0:
+                    break
+                else:
+                    i -= 1
+            else:
+                result.append(a)
+        end *= 2
+    return result[n - 1]
+
+# prime_f2(1)"
+# 1000 loops, best of 5: 3.1 usec per loop
+#
+# prime_f2(5)"
+# 1000 loops, best of 5: 63.9 usec per loop
+#
+# prime_f2(50)"
+# 1000 loops, best of 5: 4.58 msec per loop
