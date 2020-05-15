@@ -76,7 +76,6 @@ import sys
 # max_num = [i[0] for i in result.items() if i[1] == sum_num]
 # print(f"Вариант 4. Максимальная сумма цифр {sum_num} принадлежит {''.join(map(str, max_num))}")
 
-
 # Вывод. Во всех трех случаях имеются переменные max_num, max_sum b mid_sum и список значений num_list.
 # В первых двух случаях идет переприсвоение значений, в третьем - все значения mid_sum вносятся в словарь с
 # ключом - число из входных данных.
@@ -92,7 +91,6 @@ local_var_dict = locals().copy()
 # Функция вычисления использованной переменной памяти.
 def get_size_var(x, level=0):
     res = sys.getsizeof(x)
-    # print('\t' * level, f'type = {x.__class__}, size = {sys.getsizeof(x)}, object = {x}')
     if hasattr(x, '__iter__'):
         if hasattr(x, '__items__'):
             for xx in x.items():
@@ -104,58 +102,39 @@ def get_size_var(x, level=0):
 
 
 result_size = 0
+result_vars = []
 print(local_var_dict)
 # Проходимся по словарю с переменными
 for var in local_var_dict.keys():
-    result_size += get_size_var(local_var_dict[var])
-
+    if not var.startswith('__') and not var.startswith('sys'):
+        result_size += get_size_var(local_var_dict[var])
+        result_vars.append(var)
+print(result_vars)
 print(result_size)
 
 # РЕЗУЛЬТАТЫ:
 # Вариант 1
-# Переменные: {'__name__': '__main__', '__doc__': None, '__package__': None,
-# '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x0092AF58>, '__spec__': None,
-# '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>,
-# '__file__': 'C:/Users/NELYUBINA/git-project/Python-Algorithms-and-Data-Structures/lesson6/lesson6.py',
-# '__cached__': None, 'sys': <module 'sys' (built-in)>, 'num_list': [11, 34, 56, 12, 80, 10], 'max_num': 56,
-# 'sum_num': 11, 'num': 10, 'calc': 0, 'mid_sum': 1}
-# Использовано памяти: 541 b
+# Переменные: ['num_list', 'max_num', 'sum_num', 'num', 'calc', 'mid_sum']
+# Использовано памяти: 228 b
 
 # РЕЗУЛЬТАТЫ:
 # Вариант 2
-# Переменные: {'__name__': '__main__', '__doc__': None, '__package__': None,
-# '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x0101AF58>, '__spec__': None,
-# '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>,
-# '__file__': 'C:/Users/NELYUBINA/git-project/Python-Algorithms-and-Data-Structures/lesson6/lesson6.py',
-# '__cached__': None, 'sys': <module 'sys' (built-in)>, 'num_list': ['11', '34', '56', '12', '80', '10'],
-# 'max_num': '56', 'sum_num': 11, 'itm': '10', 'mid_sum': 1, 'i': '0'}
-# Использовано памяти: 635 b
+# Переменные: ['num_list', 'max_num', 'sum_num', 'itm', 'mid_sum', 'i']
+# Использовано памяти: 322 b
 
 # РЕЗУЛЬТАТЫ:
 # Вариант 3
-# Переменные: {'__name__': '__main__', '__doc__': None, '__package__': None,
-# '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x00BCAF58>, '__spec__': None,
-# '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>,
-# '__file__': 'C:/Users/NELYUBINA/git-project/Python-Algorithms-and-Data-Structures/lesson6/lesson6.py',
-# '__cached__': None, 'sys': <module 'sys' (built-in)>, 'num_list': ['11', '34', '56', '12', '80', '10'],
-# 'result': {'11': 2, '34': 7, '56': 11, '12': 3, '80': 8, '10': 1}, 'itm': '10', 'mid_sum': 1, 'i': '0',
-# 'sum_num': 11, 'max_num': ['56']}
-# Использовано памяти: 1037 b
+# Переменные: ['num_list', 'result', 'itm', 'mid_sum', 'i', 'sum_num', 'max_num']
+# Использовано памяти: 724 b
 
 # РЕЗУЛЬТАТЫ:
 # Вариант 4
-# Переменные: {'__name__': '__main__', '__doc__': None, '__package__': None,
-# '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x014EAF58>, '__spec__': None,
-# '__annotations__': {}, '__builtins__': <module 'builtins' (built-in)>,
-# '__file__': 'C:/Users/NELYUBINA/git-project/Python-Algorithms-and-Data-Structures/lesson6/lesson6.py',
-# '__cached__': None, 'sys': <module 'sys' (built-in)>, 'num_list': [11, 34, 56, 12, 80, 10],
-# 'result': {11: 2, 34: 7, 56: 11, 12: 3, 80: 8, 10: 1}, 'num': 10, 'calc': 0, 'mid_sum': 1, 'sum_num': 11,
-# 'max_num': [56]}
-# Использовано памяти: 865 b
+# Переменные: ['num_list', 'result', 'num', 'calc', 'mid_sum', 'sum_num', 'max_num']
+# Использовано памяти: 552 b
 
 # ВЫВОД.
 # Работа с типом int занимает меньше памяти, не смотря на перевод в int с помощью map всего списка num_list (Вариант 1).
 # Работа со строками не требует вычислений в данной задаче, но использует больше памяти (Вариант 2). Третий метод с
-# сохранением всех сумм в словарь менее грмоздкий, не требует пересохранения и введения временных переменных
-# (Вариант 3), но требоует больше памяти, относительно Варианта 1, в 2 раза. Оптимизировать Вариант 3 можно с помощью
-# приведения входных данных к типу int (Вариант 4).
+# сохранением всех сумм в словарь менее громоздкий, не требует пересохранения и введения временных переменных
+# (Вариант 3), но требует больше памяти, относительно Варианта 1 и 2, больше, чем в 2 раза. Оптимизировать его можно
+# с помощью приведения входных данных к типу int (Вариант 4).
