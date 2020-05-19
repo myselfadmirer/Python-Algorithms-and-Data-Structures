@@ -10,21 +10,20 @@ from random import randint
 
 # Вариант без сортировки
 def sort(array):
-    i = 0
-    while i < len(array):
+    for i in range(len(array)):
+        count = 0
         left = right = 0
-        mid = array[i]
-        for elem in array:
-            if elem > mid:
-                right += 1
-            elif elem is mid:
-                continue
-            else:
+        for j in range(len(array)):
+            if array[j] < array[i]:
                 left += 1
-        if right == left:
-            return mid
-        else:
-            i += 1
+            elif array[j] > array[i]:
+                right += 1
+            elif i == j:
+                continue
+            elif array[i] == array[j]:
+                count += 1
+        if right == left or abs(right - left) == count:
+            return array[i]
 
 
 # Применена шейкерная сортировка (в условии задачи сказано, что можно сортировать, но методом, которого не было
@@ -59,3 +58,9 @@ print(my_list)
 print(sorted(my_list))
 print(f'Функция sort: {sort(my_list)}')
 print(f'Функция mid_shaker: {mid_shaker(my_list)}')
+# print(sort([2, 4, 8, 2, 0]))
+# print(sort([4, 1, 33, 12, 15, 9, 5, 11, 9]))
+
+if __name__ == '__main__':
+    assert sort([2, 4, 8, 2, 0]) == 2, 'wrong'
+    assert sort([4, 1, 33, 12, 15, 9, 5, 11, 9]) == 9, 'wrong'
