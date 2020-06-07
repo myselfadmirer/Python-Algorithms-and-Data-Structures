@@ -1,6 +1,6 @@
 # 2. Закодируйте любую строку по алгоритму Хаффмана.
 
-from collections import deque, namedtuple, Counter
+from collections import Counter
 
 
 class Node:
@@ -30,7 +30,6 @@ def huffman_encode(s):
     count = 0
     while len(counter) > 1:
         counter.sort(reverse=True)
-        print(counter)
         freq1, _count1, left = counter.pop()
         freq2, _count2, right = counter.pop()
         counter.append((freq1 + freq2, count, Node(left, right)))
@@ -39,7 +38,6 @@ def huffman_encode(s):
     root = counter[0][2]
     root.walk(code, '')
     return code
-    # return counter
 
 
 def main():
@@ -49,7 +47,7 @@ def main():
     print(len(code), len(encoded))
     for ch in sorted(code):
         print(f'{ch}: {code[ch]}')
-    print(code, '\n', encoded)
+    print(' '.join(code[ch] for ch in s))
 
 
 if __name__ == '__main__':
